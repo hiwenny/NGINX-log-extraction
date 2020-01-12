@@ -4,7 +4,7 @@
   "description": "NGINX log extraction in Javascript",
   "main": "index.js",
   "scripts": {
-    "sample": "npm start programming-task-example-data.log",
+    "demo": "npm start programming-task-example-data.log",
     "start": "node ./src/index.js $logfile",
     "test": "jest"
   },
