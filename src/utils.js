@@ -24,21 +24,35 @@ function getSubList(logArray, regexPattern) {
   return logArray.map(log => log.match(regexPattern)[1])
 }
 
-function getTopThree(fullList, uniqueList) {
-  // // Can be its own function countOccurences() if used somewhere else,
-  // // but since it's the only usage now...
-  // const test = uniqueList.map(item => fullList.reduce((acc, currentValue, i) => item === currentValue && {acc[item]: acc[item]+1}), [])
-  // console.log(test)
-  // // First do a count using the -unique- array and tally,
-  // // Does it have to be sorted, 
-  // // Or do we just consume the whole thing and tally?
-  // // Object or array?
-  // // Object. Needs key: IP name, value: occurrence.
+// The drawback of this is that this only makes very specific identifier object
+// Such as [ { IP: '000.00.000.00'}, occurences: 1 } ] or [ { URL: '/something'}, occurences: 1 } ]
+// Is there a better way? Then again occurences is a shared keyword...
+// Unless we do something like "occurences" table
+// { 
+//   occurences: {
+//     IP: {
+//       '00.000.000.00': 1,
+//       '00.000.000.01': 1,
+//     }
+//     '/something': 3,
+//     '/something-else': 1,
+//   }
+// }
+// Depends on future use, that might be over-engineering though.
+
+function countOccurences(fullList, uniqueList, identifier) {
+  return uniqueList.map(item => {
+    const occurences = fullList.reduce( (accumulator, currentValue, i) => {
+      if (currentValue === item) return accumulator + 1
+      return accumulator
+    }, 0)
+    return {[identifier]: item, occurences}
+  })
 }
 
 module.exports = {
   parseLogContent,
   getSubList,
   getUniqueFromList,
-  getTopThree
+  countOccurences
 }

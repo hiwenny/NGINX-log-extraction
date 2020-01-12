@@ -21,22 +21,22 @@ const fs = require('fs')
 const utils = require('./utils')
 const logContent = fs.readFileSync(process.argv[2], 'utf8')
 
-// Transform and use
+// Main cleaned up array of logs
 const logArray = utils.parseLogContent(logContent)
 
 // • The number of unique IP addresses
 const IPArray = utils.getSubList(logArray, regexPatterns.IP)
-const uniqueIPs = utils.getUniqueFromList(IPArray)
+const uniqueIPArray = utils.getUniqueFromList(IPArray)
+// console.log('The number of unique IP addresses is', uniqueIPs.length)
 
 const URLArray = utils.getSubList(logArray, regexPatterns.URL)
-const uniqueURLs = utils.getUniqueFromList(URLArray)
+const uniqueURLArray = utils.getUniqueFromList(URLArray)
 
-console.log('The number of unique IP addresses is', uniqueIPs.length)
-console.log(uniqueIPs)
-console.log('The number of unique URL addresses is', uniqueURLs.length)
-console.log(uniqueURLs)
+// console.log(uniqueIPs)
+// console.log('The number of unique URL addresses is', uniqueURLs.length)
+// console.log(uniqueURLs)
 
-// utils.getTopThree(uniqueIPs, utils.getSubList())
-
+const topThreeIPs = utils.countOccurences(IPArray, uniqueIPArray, 'IP')
+console.log(topThreeIPs)
 // console.log('The top 3 most active IP addresses are', uniqueIPs.length)
 // console.log('The top 3 most visited URLs are', uniqueIPs.length)
