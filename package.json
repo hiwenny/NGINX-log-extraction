@@ -1,11 +1,15 @@
 {
   "name": "programming-task",
   "version": "0.0.0",
-  "description": "Solution for a programming task",
+  "description": "NGINX log extraction in Javascript",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "start": "node ./src/utils.js $logfile",
+    "test": "jest"
   },
-  "author": "Wenny",
-  "license": "ISC"
+  "author": "Wenny Hidayat",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^24.9.0"
+  }
 }
