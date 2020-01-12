@@ -1,14 +1,3 @@
-// Tasks:
-// • The number of unique IP addresses
-// • The top 3 most active IP addresses
-// • The top 3 most visited URLs
-// Plan:
-// Read file
-// Get unique IPs
-// Count unique IPs
-// Sort/accumulate IPs (is there a need to sort or just one-by-one? 
-// Rank IPs
-// Do the same for URLs
 const orderBy = require('lodash/orderBy')
 const fs = require('fs')
 const utils = require('./utils')
