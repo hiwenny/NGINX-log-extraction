@@ -15,7 +15,7 @@ const logContent = fs.readFileSync(process.argv[2], 'utf8')
 const logArray = utils.parseLogContent(logContent)
 
 // • The number of unique IP addresses
-const IPArray = utils.getSubList(logArray, regexPatterns.IP)
+const IPArray = utils.getCleanSubList(logArray, regexPatterns.IP)
 const uniqueIPArray = utils.getUniqueFromList(IPArray)
 console.log('The number of unique IP addresses is', uniqueIPArray.length)
 
@@ -26,7 +26,7 @@ const sortedIPs = orderBy(utils.getOccurrences(IPArray, uniqueIPArray, 'IP'), ['
 console.log('The top 3 most active IP addresses are:\n', sortedIPs[0].IP, '\n', sortedIPs[1].IP, '\n', sortedIPs[2].IP)
 
 // • The top 3 most visited URLs
-const URLArray = utils.getSubList(logArray, regexPatterns.URL)
+const URLArray = utils.getCleanSubList(logArray, regexPatterns.URL)
 const uniqueURLArray = utils.getUniqueFromList(URLArray)
 const sortedURLs = orderBy(utils.getOccurrences(URLArray, uniqueURLArray, 'URL'), ['occurrences'], ['desc'])
 console.log('The top 3 most visited URLs are:\n', sortedURLs[0].URL, '\n', sortedURLs[1].URL, '\n', sortedURLs[2].URL)

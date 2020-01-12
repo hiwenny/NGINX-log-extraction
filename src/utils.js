@@ -22,8 +22,13 @@ function getUniqueFromList(selectedArray) {
  * @param {Array} logArray 
  * @param {Array} regexPattern 
  */
-function getSubList(logArray, regexPattern) {
-  return logArray.map(log => log.match(regexPattern)[1])
+function getCleanSubList(logArray, regexPattern) {
+  const matchedArray = logArray.map(log => {
+    const matched = log.match(regexPattern)
+    if (matched) return matched[1]
+    return matched
+  })
+  return matchedArray.filter(value => !! value)
 }
 
 /**
@@ -62,7 +67,7 @@ function getOccurrences(targetArray, referenceArray, identifier) {
 
 module.exports = {
   parseLogContent,
-  getSubList,
+  getCleanSubList,
   getUniqueFromList,
   getOccurrences
 }

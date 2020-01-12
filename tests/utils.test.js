@@ -11,3 +11,44 @@ describe('parseLogContent', () => {
   })
 })
 
+describe('getCleanSubList', () => {
+  it('creates a new array of matched parts from the reference array', () => {
+    const refArray = ['something', 'some0thing', 'some-thing', 'a']
+    expect(utils.getCleanSubList(refArray, '(.+?)0')).toEqual(['some'])
+  })
+})
+
+describe('getUniqueFromList', () => {
+  it('de-duplicates the passed in array', () => {
+    const refArray = ['something', 'some0thing', 'something', 'else']
+    expect(utils.getUniqueFromList(refArray)).toEqual(['something', 'some0thing', 'else'])
+  })
+})
+
+describe('getOccurrences', () => {
+  it('de-duplicates the passed in array', () => {
+    const refArray = ['something', 'some0thing', 'example']
+    const targetArray = ['something', 'somethingssss', 'example', 'ssssomethingggg', 'example', 'some0thing']
+    expect(utils.getOccurrences(targetArray, refArray, 'sampleKey')).toEqual([
+      {
+        sampleKey: 'something',
+        occurrences: 1 
+      },
+      {
+        sampleKey: 'some0thing',
+        occurrences: 1 
+      },
+      {
+        sampleKey: 'example',
+        occurrences: 2
+      }
+    ])
+    expect(utils.getOccurrences(targetArray, ['somethingssss'], 'sampleKey')).toEqual([
+      {
+        sampleKey: 'somethingssss',
+        occurrences: 1 
+      }
+    ])
+    expect(utils.getOccurrences(targetArray, [], 'sampleKey')).toEqual([])
+  })
+})
