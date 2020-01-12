@@ -23,13 +23,20 @@ const logContent = fs.readFileSync(process.argv[2], 'utf8')
 
 // Transform and use
 const logArray = utils.parseLogContent(logContent)
-const uniqueIPs = utils.getUniqueFromList(logArray, regexPatterns.IP)
-const uniqueURLs = utils.getUniqueFromList(logArray, regexPatterns.URL)
+
+// • The number of unique IP addresses
+const IPArray = utils.getSubList(logArray, regexPatterns.IP)
+const uniqueIPs = utils.getUniqueFromList(IPArray)
+
+const URLArray = utils.getSubList(logArray, regexPatterns.URL)
+const uniqueURLs = utils.getUniqueFromList(URLArray)
 
 console.log('The number of unique IP addresses is', uniqueIPs.length)
 console.log(uniqueIPs)
 console.log('The number of unique URL addresses is', uniqueURLs.length)
 console.log(uniqueURLs)
+
+// utils.getTopThree(uniqueIPs, utils.getSubList())
 
 // console.log('The top 3 most active IP addresses are', uniqueIPs.length)
 // console.log('The top 3 most visited URLs are', uniqueIPs.length)

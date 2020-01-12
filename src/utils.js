@@ -16,19 +16,29 @@ function parseLogContent(loadedLogContent) {
  * @param {logArray} logArray Array containing logs containing parts to be selected.
  * @param {regexPattern} regexPattern The pattern used for matching and selection.
  */
-function getUniqueFromList(logArray, regexPattern) {
-  const uniqueArray = logArray.map(log => log.match(regexPattern)[1])
-  return Array.from(new Set(uniqueArray))
+function getUniqueFromList(selectedArray) {
+  return Array.from(new Set(selectedArray))
 }
 
-function getTopThree(uniqueList, fullList) {
-  // First do a count using the -unique- array and tally,
-  // Then find max
-  // Does it have to be sorted, 
-  // Or do we just consume the whole thing and tally?
+function getSubList(logArray, regexPattern) {
+  return logArray.map(log => log.match(regexPattern)[1])
+}
+
+function getTopThree(fullList, uniqueList) {
+  // // Can be its own function countOccurences() if used somewhere else,
+  // // but since it's the only usage now...
+  // const test = uniqueList.map(item => fullList.reduce((acc, currentValue, i) => item === currentValue && {acc[item]: acc[item]+1}), [])
+  // console.log(test)
+  // // First do a count using the -unique- array and tally,
+  // // Does it have to be sorted, 
+  // // Or do we just consume the whole thing and tally?
+  // // Object or array?
+  // // Object. Needs key: IP name, value: occurrence.
 }
 
 module.exports = {
   parseLogContent,
-  getUniqueFromList
+  getSubList,
+  getUniqueFromList,
+  getTopThree
 }
