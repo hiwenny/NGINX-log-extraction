@@ -1,0 +1,11 @@
+{
+  "name": "programming-task",
+  "version": "0.0.0",
+  "description": "Solution for a programming task",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "author": "Wenny",
+  "license": "ISC"
+}
