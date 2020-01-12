@@ -1,40 +1,14 @@
-// Tasks:
-// • The number of unique IP addresses
-// • The top 3 most active IP addresses
-// • The top 3 most visited URLs
-// Plan:
-// Read file
-// Get unique IPs
-// Count unique IPs
-// Sort/accumulate IPs (is there a need to sort or just one-by-one? 
-// Rank IPs
-// Do the same for URLs
 
-const regexPatterns = {
-  IP: '(.+?) -',
-  URL: '"GET (.+?) HTTP/1.1"'
-}
-
-const logArray = getLogContent(process.argv[2])
-const uniqueIPs = getUniqueFromList(logArray, regexPatterns.IP)
-const uniqueURLs = getUniqueFromList(logArray, regexPatterns.URL)
-
-console.log('The number of unique IP addresses is', uniqueIPs.length)
-console.log(uniqueIPs)
-console.log('The number of unique URL addresses is', uniqueURLs.length)
-console.log(uniqueURLs)
-
-// console.log('The top 3 most active IP addresses are', uniqueIPs.length)
-// console.log('The top 3 most visited URLs are', uniqueIPs.length)
-
+// ============= Utils start here =============== //
 /** 
  * Loader function, outputs an array of logs.
  * @param {string} pathname Pathname of the file to be loaded.
 */
-function getLogContent(pathname) {
-  const fs = require('fs')
-  const logArray = fs.readFileSync(pathname, 'utf8').split('\n')
-  return logArray.filter(log => !!log)
+function parseLogContent(loadedLogContent) {
+  // Note: this only removes [null, undefined, ] - it does not validate.
+  // So something like ['\n     '] will still be considered 1 entry.
+  // It also doesn't care if the log is in the correct format.
+  return loadedLogContent.split('\n').filter(log => !!log)
 }
 
 /**
@@ -52,4 +26,9 @@ function getTopThree(uniqueList, fullList) {
   // Then find max
   // Does it have to be sorted, 
   // Or do we just consume the whole thing and tally?
+}
+
+module.exports = {
+  parseLogContent,
+  getUniqueFromList
 }
