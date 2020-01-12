@@ -4,6 +4,7 @@
   "description": "NGINX log extraction in Javascript",
   "main": "index.js",
   "scripts": {
+    "sample": "npm start programming-task-example-data.log",
     "start": "node ./src/index.js $logfile",
     "test": "jest"
   },
@@ -12,5 +13,8 @@
   "devDependencies": {
     "jest": "^24.9.0",
     "pre-commit": "^1.2.2"
+  },
+  "dependencies": {
+    "lodash.orderby": "^4.6.0"
   }
 }

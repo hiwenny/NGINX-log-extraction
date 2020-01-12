@@ -8,5 +8,10 @@ For a given log file we want to know:
 
 Please include tests that demonstrate your solution is working.
 
+# Usage
+To run using the test log file: `npm run sample`
+
+To use with other sources: `npm start <your-data.log>`
+
 # FAQs
 - This package is written using ES6 syntax - it's recommended that you upgrade to the latest Node, or check compatibility in https://node.green/ if you run into any issues. For additional information see https://nodejs.org/en/docs/es6/.
