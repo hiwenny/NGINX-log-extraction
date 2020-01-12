@@ -4,13 +4,13 @@
   "description": "NGINX log extraction in Javascript",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/utils.js $logfile",
+    "start": "node ./src/index.js $logfile",
     "test": "jest"
   },
   "author": "Wenny Hidayat",
   "license": "ISC",
   "devDependencies": {
     "jest": "^24.9.0",
-    "precommit": "^1.2.2"
+    "pre-commit": "^1.2.2"
   }
 }
